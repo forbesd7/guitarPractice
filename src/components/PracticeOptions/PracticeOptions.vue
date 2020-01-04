@@ -51,6 +51,11 @@ export default {
   }),
   methods: {
     addChordToSelected(selectedChord) {
+      if (this.selectedChords.includes(selectedChord)) {
+        const chordIndex = this.selectedChords.indexOf(selectedChord);
+        this.selectedChords.splice(chordIndex, 1);
+        return;
+      }
       this.selectedChords.push(selectedChord);
     }
   }

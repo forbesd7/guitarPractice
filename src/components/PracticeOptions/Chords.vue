@@ -1,11 +1,11 @@
 <template>
   <div
     class="chordContainer"
-    v-bind:class="{chordContainer2: isActive}"
-    v-on:click="greyOutSelected"
+    v-bind:class="{selected: isSelected}"
+    @click="() => {greyOutSelected(); $emit('addChordToSelected', name)}"
   >
     <p>{{ name }}</p>
-    <p>{{fack}}</p>
+    <p>ok</p>
   </div>
 </template>
 
@@ -13,14 +13,14 @@
 export default {
   data: () => ({
     color: "black",
-    isActive: false
+    isSelected: false
   }),
   props: {
     name: String
   },
   methods: {
     greyOutSelected() {
-      this.isActive = !this.isActive;
+      this.isSelected = !this.isSelected;
     }
   }
 };
@@ -38,7 +38,7 @@ export default {
   margin-left: 2%;
   transition: 0.3s;
 }
-.chordContainer2 {
+.selected {
   background: grey;
 }
 .chordContainer:hover {
@@ -53,4 +53,4 @@ export default {
 }
 </style>
 
-// v-on:click="$emit('addChordToSelected', name)"
+//v-on:click="$emit('addChordToSelected', name)"
