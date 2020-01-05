@@ -5,7 +5,8 @@
     </div>
     <div class="chordContainer">
       <div class="countDownTimer" v-if="countdownTimer !== 0">{{countdownTimer}}</div>
-      <div style="color:gold" v-if="countdownTimer === 0">{{localPracticeLength}}</div>
+      <div class="countDownTimer" v-if="localPracticeLength === 57">hi</div>
+      <div style="color:gold" v-else-if="countdownTimer === 0">{{localPracticeLength}}</div>
     </div>
   </div>
 </template>
@@ -35,14 +36,19 @@ export default {
     },
 
     startPractice() {
-      this.localPracticeLength = this.practiceLength;
+      this.localPracticeLength = this.practiceLength + 2;
       const practiceInterval = setInterval(() => {
         if (this.localPracticeLength === 1) {
           clearInterval(practiceInterval);
+          //  this.showFinishedPracticeScreen();
         }
         this.localPracticeLength--;
       }, 1000);
     }
+
+    // showFinishedPracticeScreen() {
+
+    // }
   },
   created() {
     this.countDown();
