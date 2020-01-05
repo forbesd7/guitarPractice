@@ -19,6 +19,9 @@
       <ChordSwitchPractice
         v-on:changeToOptionsView="changeToOptionsView"
         v-bind:selectedChords="selectedChords"
+        v-bind:beatsPerMin="beatsPerMin"
+        v-bind:barsPerChord="barsPerChord"
+        v-bind:practiceLength="practiceLength"
       />
     </div>
   </div>
@@ -35,6 +38,9 @@ export default {
   },
   data: () => ({
     currentView: "optionsView",
+    practiceLength: 60,
+    beatsPerMin: 60,
+    barsPerChord: 4,
     selectedChords: [],
     chords: [
       {
