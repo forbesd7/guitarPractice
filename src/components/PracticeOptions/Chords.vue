@@ -5,7 +5,6 @@
     @click="() => {greyOutSelected(); $emit('addChordToSelected', name)}"
   >
     <p>{{ name }}</p>
-    <p>ok</p>
   </div>
 </template>
 

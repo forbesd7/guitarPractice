@@ -1,15 +1,23 @@
 <template>
-  <div class="container">
-    <!-- <button>Start</button>
-    <button>Time</button>-->
+  <div>
+    <div v-if="currentView === 'optionsView'" class="container">
+      <div class="chordContainer">
+        <Chords
+          v-for="(chord, index) in chords"
+          v-bind:name="chord.name"
+          v-bind:key="index"
+          v-on:addChordToSelected="addChordToSelected"
+        ></Chords>
+      </div>
 
-    <Chords
-      v-for="(chord, index) in chords"
-      v-bind:name="chord.name"
-      v-bind:key="index"
-      v-on:addChordToSelected="addChordToSelected"
-    ></Chords>
-    <p style="color:gold">{{ selectedChords }}</p>
+      <div class="buttonContainer">
+        <button @click="changeToPracticeView" class="button">START</button>
+      </div>
+    </div>
+
+    <div v-if="currentView === 'practiceView'">
+      <button @click="changeToOptionsView" class="button">Quit</button>
+    </div>
   </div>
 </template>
 
@@ -21,6 +29,7 @@ export default {
     Chords
   },
   data: () => ({
+    currentView: "optionsView",
     selectedChords: [],
     chords: [
       {
@@ -57,6 +66,13 @@ export default {
         return;
       }
       this.selectedChords.push(selectedChord);
+    },
+
+    changeToPracticeView() {
+      this.currentView = "practiceView";
+    },
+    changeToOptionsView() {
+      this.currentView = "optionsView";
     }
   }
 };
@@ -68,7 +84,31 @@ export default {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.chordContainer {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContainer {
+  padding: 4%;
+}
+
+.button {
+  color: gold;
+  background: black;
+  border: 2px gold solid;
+  font-size: 2em;
+  transition: 0.5s;
+  outline: none;
+}
+.button:hover {
+  background: grey;
+  cursor: pointer;
 }
 </style>
