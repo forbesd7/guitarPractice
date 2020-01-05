@@ -4,7 +4,7 @@
       <div class="chordContainer">
         <Chords
           v-for="(chord, index) in chords"
-          v-bind:name="chord.name"
+          v-bind:chord="chord"
           v-bind:key="index"
           v-on:addChordToSelected="addChordToSelected"
         ></Chords>
@@ -16,17 +16,22 @@
     </div>
 
     <div v-if="currentView === 'practiceView'">
-      <button @click="changeToOptionsView" class="button">Quit</button>
+      <ChordSwitchPractice
+        v-on:changeToOptionsView="changeToOptionsView"
+        v-bind:selectedChords="selectedChords"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import Chords from "./Chords";
+import ChordSwitchPractice from "../ChordSwitchPractice";
 export default {
   name: "PracticeOptions",
   components: {
-    Chords
+    Chords,
+    ChordSwitchPractice
   },
   data: () => ({
     currentView: "optionsView",
@@ -60,12 +65,20 @@ export default {
   }),
   methods: {
     addChordToSelected(selectedChord) {
-      if (this.selectedChords.includes(selectedChord)) {
-        const chordIndex = this.selectedChords.indexOf(selectedChord);
-        this.selectedChords.splice(chordIndex, 1);
-        return;
+      let checkIfChordHasBeenAdded = false;
+
+      //check if chord has been added, if so, remove from the list
+      this.selectedChords.map((chord, index) => {
+        if (selectedChord.name === chord.name) {
+          this.selectedChords.splice(index, 1);
+          checkIfChordHasBeenAdded = true;
+          return;
+        }
+      });
+
+      if (checkIfChordHasBeenAdded === false) {
+        this.selectedChords.push(selectedChord);
       }
-      this.selectedChords.push(selectedChord);
     },
 
     changeToPracticeView() {

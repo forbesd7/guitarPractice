@@ -2,9 +2,9 @@
   <div
     class="chordContainer"
     v-bind:class="{selected: isSelected}"
-    @click="() => {greyOutSelected(); $emit('addChordToSelected', name)}"
+    @click="() => {greyOutSelected(); $emit('addChordToSelected', chord)}"
   >
-    <p>{{ name }}</p>
+    <p>{{ chord.name }}</p>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     isSelected: false
   }),
   props: {
-    name: String
+    chord: Object
   },
   methods: {
     greyOutSelected() {
