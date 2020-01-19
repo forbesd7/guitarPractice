@@ -38,7 +38,7 @@ export default {
   },
   data: () => ({
     currentView: "optionsView",
-    practiceLength: 60,
+    practiceLength: 4,
     beatsPerMin: 60,
     barsPerChord: 4,
     selectedChords: [],

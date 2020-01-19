@@ -3,10 +3,12 @@
     <div class="buttonContainer">
       <button class="button" @click="$emit('changeToOptionsView')">BACK</button>
     </div>
+    <div style="color:gold">{{localPracticeLength}}</div>
     <div class="chordContainer">
       <div class="countDownTimer" v-if="countdownTimer !== 0">{{countdownTimer}}</div>
-      <div class="countDownTimer" v-if="localPracticeLength === 57">hi</div>
-      <div style="color:gold" v-else-if="countdownTimer === 0">{{localPracticeLength}}</div>
+      <div style="color:gold" v-else>
+        <div v-if="localPracticeLength === 0">Practice Done</div>
+      </div>
     </div>
   </div>
 </template>
