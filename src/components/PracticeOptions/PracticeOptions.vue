@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="container">
+    <Navbar />
     <div v-if="currentView === 'optionsView'" class="container">
       <div class="chordContainer">
         <Chords
@@ -30,11 +31,13 @@
 <script>
 import Chords from "./Chords";
 import ChordSwitchPractice from "../ChordSwitchPractice";
+import Navbar from "../Navbar";
 export default {
   name: "PracticeOptions",
   components: {
     Chords,
-    ChordSwitchPractice
+    ChordSwitchPractice,
+    Navbar
   },
   data: () => ({
     currentView: "optionsView",
